@@ -34,14 +34,25 @@ function App() {
   ////////////////////////
 
   function rate() {
-    let kurss = prompt("A new rate", "1");
-    if (kurss == null || typeof kurss !== "number" ||kurss < 0){
-      alert("Something is wrong");
+    let kurss = prompt("Uus kurss", "1");
+    if (kurss == null || typeof parseInt(kurss) !== "number" || kurss < 0){
+      alert("Midagi on vale");
       return;
     }
     fetch("http://localhost:5139/toode/rate/" + kurss, {"method": "PATCH"})
       .then(res => res.json())
       .then(json => setTooted(json));
+  }
+  function changePrice() {
+    let id = prompt("Vajalik indeks", "1");
+    let hind = prompt("Hinda tõsta", "1");
+    if (hind == null || hind < 0){
+      alert("Something is wrong");
+      return;
+    }
+      fetch(`http://localhost:5139/toode/suurenda-hinda/${id}/${hind}`, {"method": "PATCH"})
+        .then(res => res.json())
+        .then(json => setTooted(json));
   }
 
   return (
@@ -79,6 +90,7 @@ function App() {
       </div>
       <div className='tools'>
           <button onClick={() => rate()}>Muuda kurss</button>
+          <button onClick={() => changePrice()}>Suurenda hinda</button>
       </div>
   </div>
   );
