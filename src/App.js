@@ -34,8 +34,11 @@ function App() {
   }
   ////////////////////////
 
-  function dollariteks() {
-    const kurss = 1.1;
+  function rate() {
+    let kurss = prompt("A new rate", "1");
+    if (kurss == null || kurss < 0){
+      return;
+    }
     fetch("http://localhost:5139/toode/rate/" + kurss, {"method": "PATCH"})
       .then(res => res.json())
       .then(json => setTooted(json));
@@ -56,12 +59,14 @@ function App() {
         <div className="list-section">
           <table>
             <tr>
+              <th>Indeks</th>
               <th>Nimi</th>
               <th>Hind</th>
               <th>Tegevus</th>
             </tr>
             {tooted.map((toode, index) => (
               <tr key={index}>
+              <td>{index}</td>
                 <td>{toode.name}</td>
                 <td>{toode.price}</td>
                 <td>
@@ -73,7 +78,7 @@ function App() {
         </div>
       </div>
       <div className='tools'>
-          <button onClick={() => dollariteks()}>Muuda dollariteks</button>
+          <button onClick={() => rate()}>Muuda kurss</button>
       </div>
   </div>
   );
