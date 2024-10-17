@@ -22,10 +22,9 @@ function App() {
 
   ////////////////////////
   function lisa() {
-    const uusToode = {
-      "name": nameRef.current.value,
-      "price": Number(priceRef.current.value),
-      "isActive": isActiveRef.current.checked
+    if (nameRef.current.value == null || priceRef.current.value == null || typeof parseInt(priceRef.current.value) !== "number" || priceRef.current.value < 0){
+      alert("Something is wrong");
+      return;
     }
     fetch(`http://localhost:5139/toode/create/
         ${nameRef.current.value}/${Number(priceRef.current.value)}/${isActiveRef.current.checked}`, {"method": "POST"})
@@ -36,7 +35,8 @@ function App() {
 
   function rate() {
     let kurss = prompt("A new rate", "1");
-    if (kurss == null || kurss < 0){
+    if (kurss == null || typeof kurss !== "number" ||kurss < 0){
+      alert("Something is wrong");
       return;
     }
     fetch("http://localhost:5139/toode/rate/" + kurss, {"method": "PATCH"})
