@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
 
+const isNum = (num) => !(num == null || typeof parseInt(num) !== "number" || num < 0);
+
 function App() {
   const [tooted, setTooted] = useState([]);
   const nameRef = useRef();
@@ -32,10 +34,18 @@ function App() {
       .then(json => setTooted(json));
   }
   ////////////////////////
-
+  function isNum(num){
+    if(num == null || typeof parseInt(num) !== "number" || num < 0)
+    {
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
   function rate() {
     let kurss = prompt("Uus kurss", "1");
-    if (kurss == null || typeof parseInt(kurss) !== "number" || kurss < 0){
+    if (isNum(kurss)){
       alert("Midagi on vale");
       return;
     }
@@ -46,8 +56,8 @@ function App() {
   function changePrice() {
     let id = prompt("Vajalik indeks", "1");
     let hind = prompt("Hinda tõsta", "1");
-    if (hind == null || hind < 0){
-      alert("Something is wrong");
+    if (isNum(id) || isNum(hind)){
+      alert("Midagi on vale");
       return;
     }
       fetch(`http://localhost:5139/toode/suurenda-hinda/${id}/${hind}`, {"method": "PATCH"})
@@ -87,10 +97,10 @@ function App() {
             ))}
           </table>
         </div>
-      </div>
-      <div className='tools'>
-          <button onClick={() => rate()}>Muuda kurss</button>
-          <button onClick={() => changePrice()}>Suurenda hinda</button>
+        <div className='tools'>
+            <button onClick={() => rate()}>Muuda kurss</button> 
+            <button onClick={() => changePrice()}>Suurenda hinda</button>
+        </div>
       </div>
   </div>
   );
