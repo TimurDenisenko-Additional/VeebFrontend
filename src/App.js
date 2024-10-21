@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
 
-const isNum = (num) => !(num == null || typeof parseInt(num) !== "number" || num < 0);
+const isNotNum = (num) => Number.isNaN(parseInt(num)) || num < 0;
 
 function App() {
   const [tooted, setTooted] = useState([]);
@@ -24,8 +24,8 @@ function App() {
 
   ////////////////////////
   function lisa() {
-    if (nameRef.current.value == null || priceRef.current.value == null || typeof parseInt(priceRef.current.value) !== "number" || priceRef.current.value < 0){
-      alert("Something is wrong");
+    if (nameRef.current.value == null || isNotNum(priceRef)){
+      alert("Midagi on vale");
       return;
     }
     fetch(`http://localhost:5139/toode/create/
@@ -34,18 +34,9 @@ function App() {
       .then(json => setTooted(json));
   }
   ////////////////////////
-  function isNum(num){
-    if(num == null || typeof parseInt(num) !== "number" || num < 0)
-    {
-      return false;
-    }
-    else{
-      return true;
-    }
-  }
   function rate() {
     let kurss = prompt("Uus kurss", "1");
-    if (isNum(kurss)){
+    if (isNotNum(kurss)){
       alert("Midagi on vale");
       return;
     }
@@ -56,7 +47,7 @@ function App() {
   function changePrice() {
     let id = prompt("Vajalik indeks", "1");
     let hind = prompt("Hinda tõsta", "1");
-    if (isNum(id) || isNum(hind)){
+    if (isNotNum(id) || isNotNum(hind)){
       alert("Midagi on vale");
       return;
     }
