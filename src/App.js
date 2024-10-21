@@ -21,10 +21,8 @@ function App() {
       .then(res => res.json())
       .then(json => setTooted(json));
   }
-
-  ////////////////////////
   function lisa() {
-    if (nameRef.current.value == null || isNotNum(priceRef)){
+    if (nameRef.current.value == null){
       alert("Midagi on vale");
       return;
     }
@@ -33,7 +31,6 @@ function App() {
       .then(res => res.json())
       .then(json => setTooted(json));
   }
-  ////////////////////////
   function rate() {
     let kurss = prompt("Uus kurss", "1");
     if (isNotNum(kurss)){
@@ -51,9 +48,66 @@ function App() {
       alert("Midagi on vale");
       return;
     }
-      fetch(`http://localhost:5139/toode/suurenda-hinda/${id}/${hind}`, {"method": "PATCH"})
-        .then(res => res.json())
-        .then(json => setTooted(json));
+    fetch(`http://localhost:5139/toode/suurenda-hinda/${id}/${hind}`, {"method": "PATCH"})
+      .then(res => res.json())
+      .then(json => setTooted(json));
+  }
+  function multiplyPrice() {
+    let id = prompt("Vajalik indeks", "1");
+    let hind = prompt("Hinda tõsta", "1");
+    if (isNotNum(id) || isNotNum(hind)){
+      alert("Midagi on vale");
+      return;
+    }
+    fetch(`http://localhost:5139/toode/multiply-price/${id}/${hind}`, {"method": "PATCH"})
+      .then(res => res.json())
+      .then(json => setTooted(json));
+  }
+  function changeActive() {
+    let id = prompt("Vajalik indeks", "1");
+    if (isNotNum(id)){
+      alert("Midagi on vale");
+      return;
+    }
+    fetch(`http://localhost:5139/toode/change-active/${id}`, {"method": "PATCH"})
+      .then(res => res.json())
+      .then(json => setTooted(json));
+  }
+  function manageActive(){
+    let active = prompt("Kas määrata kõigi toodete aktiivsus true või false?")
+    if (active !== "true" && active !== "false"){
+      alert("Midagi on vale");
+      return;
+    }
+    fetch(`http://localhost:5139/Toode/state-manage/${active}`, {"method": "PATCH"})
+      .then(res => res.json())
+      .then(json => setTooted(json));
+  }
+  function changeName(){
+    let id = prompt("Vajalik indeks", "1");
+    let name = prompt("Kirjuta uue nimi", "nimi");
+    if(isNotNum(id) || name === null ||  name.trim() === ""){
+      alert("Midagi on vale");
+      return;
+    }
+    fetch(`http://localhost:5139/Toode/change-name/${id}/${name}`, {"method": "PATCH"})
+      .then(res => res.json())
+      .then(json => setTooted(json));
+  }
+  function clear(){
+    fetch(`http://localhost:5139/Toode/clear`, {"method": "DELETE"})
+    .then(res => res.json())
+    .then(json => setTooted(json));        
+  }
+  function maxPrice(){
+    fetch(`http://localhost:5139/Toode/max-price`, {"method": "GET"})
+    .then(res => res.text())
+    .then(text => alert(text));      
+  }
+  function backup(){
+    fetch(`http://localhost:5139/Toode/backup`, {"method": "POST"})
+    .then(res => res.json())
+    .then(json => setTooted(json));   
   }
 
   return (
@@ -73,13 +127,15 @@ function App() {
             <tr>
               <th>Indeks</th>
               <th>Nimi</th>
+              <th>Aktiivne</th>
               <th>Hind</th>
               <th>Tegevus</th>
-            </tr>
+            </tr> 
             {tooted.map((toode, index) => (
               <tr key={index}>
               <td>{index}</td>
                 <td>{toode.name}</td>
+                {toode.isActive ? <td className='Active'>🟢 Aktiivne</td> : <td className='nActive'>🔴 Mitte aktiivne</td>} 
                 <td>{toode.price}</td>
                 <td>
                   <button onClick={() => kustuta(index)}>Kustuta</button>
@@ -89,8 +145,15 @@ function App() {
           </table>
         </div>
         <div className='tools'>
-            <button onClick={() => rate()}>Muuda kurss</button> 
-            <button onClick={() => changePrice()}>Suurenda hinda</button>
+          <button onClick={() => maxPrice()}>Maksimaalne hind</button>
+          <button onClick={() => rate()}>Muuda kurss</button> 
+          <button onClick={() => changePrice()}>Suurenda hinda</button>
+          <button onClick={() => multiplyPrice()}>Korruta hind</button>
+          <button onClick={() => changeActive()}>Muuta aktiivse</button>
+          <button onClick={() => manageActive()}>Hallata aktiivset</button>
+          <button onClick={() => changeName()}>Muuta nimi</button>
+          <button onClick={() => backup()}>Varukoopia</button>
+          <button onClick={() => clear()}>Selge</button>
         </div>
       </div>
   </div>
