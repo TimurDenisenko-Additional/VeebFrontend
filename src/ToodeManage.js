@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import './App.css';
+import './ToodeManage.css';
 
 const isNotNum = (num) => Number.isNaN(parseInt(num)) || num < 0;
 
-function App() {
+function ToodeManage() {
   const [tooted, setTooted] = useState([]);
   const nameRef = useRef();
   const priceRef = useRef();
@@ -160,4 +160,4 @@ function App() {
   );
 }
 
-export default App;
+export default ToodeManage;
