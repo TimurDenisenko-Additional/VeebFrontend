@@ -20,6 +20,7 @@ function ToodeManage() {
     fetch("http://localhost:5139/toode/delete/" + index, {"method": "DELETE"})
       .then(res => res.json())
       .then(json => setTooted(json));
+
   }
   function lisa() {
     if (nameRef.current.value == null){

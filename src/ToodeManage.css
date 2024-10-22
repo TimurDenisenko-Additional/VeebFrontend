@@ -6,7 +6,6 @@ html, div{
   display: flex;
   align-items: flex-start;
   gap: 20px;
-  padding: 20px;
   width: 100%;
 }
 .tools{
@@ -33,11 +32,11 @@ html, div{
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f2f2f2;
-  padding: 20px;
+  padding: 10px;
   margin: 0 0 0 30px;
   height: 210px;
 }
-input[type=text], input[type=number] {
+.container input[type=text], input[type=number] {
   width: 75%;
   padding: 12px 20px;
   margin: 8px 0 10px 54px;
@@ -46,7 +45,7 @@ input[type=text], input[type=number] {
   border-radius: 4px;
   box-sizing: border-box;
 }
-input[type=checkbox] {
+.container input[type=checkbox] {
   padding: 12px 20px;
   margin: 8px 0 10px 32px;
   display: inline-block;
