@@ -10,20 +10,15 @@ function Store(){
           .then(json => setTooted(json));
       }, []);
 
-    return (
-    <div className="list-section">
-          <table>
-            <tr>
-              <th>Nimi</th>
-              <th>Hind</th>
-            </tr> 
+      return (
+        <div className="store-container">
             {tooted.map((toode, index) => (
-            <tr key={index}>
-            <td>{toode.name}</td>
-            <td>{toode.price}</td>
-            </tr>
+                <div key={index} className="product-item">
+                    <p className="product-name">{toode.name}</p>
+                    <p className="product-price">Price: {toode.price} €</p>
+                    <button className="buy-button">Buy Now</button>
+                </div>
             ))}
-          </table>
         </div>
     );
 }
