@@ -115,6 +115,7 @@ function ToodeManage() {
     <div className="App">
       <div className="container">
         <div className="form-section">
+          <h2>Lisa Uus Toode</h2>
           <label>Nimi</label>
           <input ref={nameRef} type="text" /> <br />
           <label>Hind</label>
@@ -124,6 +125,7 @@ function ToodeManage() {
           <button onClick={() => lisa()}>Lisa</button>
         </div>
         <div className="list-section">
+          <h2>Toodete Nimekiri</h2>
           <table>
             <tr>
               <th>Indeks</th>
@@ -131,12 +133,12 @@ function ToodeManage() {
               <th>Aktiivne</th>
               <th>Hind</th>
               <th>Tegevus</th>
-            </tr> 
+            </tr>
             {tooted.map((toode, index) => (
               <tr key={index}>
-              <td>{index}</td>
+                <td>{index}</td>
                 <td>{toode.name}</td>
-                {toode.isActive ? <td className='Active'>🟢 Aktiivne</td> : <td className='nActive'>🔴 Mitte aktiivne</td>} 
+                {toode.isActive ? <td className='Active'>🟢 Aktiivne</td> : <td className='nActive'>🔴 Mitte aktiivne</td>}
                 <td>{toode.price}</td>
                 <td>
                   <button onClick={() => kustuta(index)}>Kustuta</button>
@@ -145,19 +147,19 @@ function ToodeManage() {
             ))}
           </table>
         </div>
-        <div className='tools'>
-          <button onClick={() => maxPrice()}>Maksimaalne hind</button>
-          <button onClick={() => rate()}>Muuda kurss</button> 
-          <button onClick={() => changePrice()}>Suurenda hinda</button>
-          <button onClick={() => multiplyPrice()}>Korruta hind</button>
-          <button onClick={() => changeActive()}>Muuta aktiivse</button>
-          <button onClick={() => manageActive()}>Hallata aktiivset</button>
-          <button onClick={() => changeName()}>Muuta nimi</button>
-          <button onClick={() => backup()}>Varukoopia</button>
-          <button onClick={() => clear()}>Selge</button>
-        </div>
       </div>
-  </div>
+      <div className='tools'>
+        <button onClick={() => maxPrice()}>Maksimaalne hind</button>
+        <button onClick={() => rate()}>Muuda kurss</button>
+        <button onClick={() => changePrice()}>Suurenda hinda</button>
+        <button onClick={() => multiplyPrice()}>Korruta hind</button>
+        <button onClick={() => changeActive()}>Muuta aktiivse</button>
+        <button onClick={() => manageActive()}>Hallata aktiivset</button>
+        <button onClick={() => changeName()}>Muuta nimi</button>
+        <button onClick={() => backup()}>Varukoopia</button>
+        <button onClick={() => clear()}>Selge</button>
+      </div>
+    </div>
   );
 }
 

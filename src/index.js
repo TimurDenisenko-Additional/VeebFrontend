@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Router>
-      <Navigation />
+      <Navigation isAuthenticated={isAuthenticated}/>
       <Routes>
         <Route path="/" element={<Store />} />
         <Route path="/ToodeManage" element={<ToodeManage />} />

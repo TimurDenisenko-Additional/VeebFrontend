@@ -12,6 +12,7 @@ function Store(){
 
       return (
         <div className="store-container">
+        <h1 className='store-title'>Welcome to our store!</h1>
             {tooted.map((toode, index) => (
                 <div key={index} className="product-item">
                     <p className="product-name">{toode.name}</p>

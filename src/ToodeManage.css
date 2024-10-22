@@ -7,34 +7,42 @@ html, div{
   align-items: flex-start;
   gap: 20px;
   width: 100%;
+  margin-bottom: 30px;
 }
 .tools{
+  display: flex;
+  flex-flow: row wrap;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f2f2f2;
-  padding: 20px;
-  overflow-y: auto;
+  width: 100%;
+  justify-content: space-evenly;
+  max-width: 1885px;
+  max-height: 100px;
 }
 .tools button {
-  width: 100%;
   background-color: #858080;
   color: white;
   padding: 14px 20px;
-  margin: 10px 0;
+  margin: 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
+  width: 150px;
+  height: 60px;
 }
 .tools button:hover {
   background-color: #1c7279;
+}
+.toolsHeader{
+  padding-top: 15px;
 }
 .form-section, .list-section, .tools {  
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 10px;
-  margin: 0 0 0 30px;
-  height: 210px;
+  height: 300px;
 }
 .container input[type=text], input[type=number] {
   width: 75%;
@@ -81,10 +89,6 @@ html, div{
 }
 .form-section{
   min-width: 400px;
-  width: 100%;
-}
-.tools{
-  min-width: 350px;
   width: 100%;
 }
 table {
