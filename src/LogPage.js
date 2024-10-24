@@ -1,6 +1,7 @@
-import { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRef, useContext } from 'react';
+import { json, useNavigate } from 'react-router-dom';
 import './Login.css';
+import { AuthContext } from './AuthContext';
 
 function LogPage(){
     const username = useRef();
@@ -8,16 +9,21 @@ function LogPage(){
     const firstname = useRef();
     const lastname = useRef();
     const navigate = useNavigate();
+    const { isAuth } = useContext(AuthContext);
 
     function login(){
         fetch(`http://localhost:5139/Kasutaja/login/${username.current.value}/${password.current.value}`, {"method": "GET"})
-          .then(res => res.text())
-          .then(text => alert(text));
+          .then(res => res.json())
+          .then(json => isAuth = json);
+          alert(isAuth ? "Edu! Ole sisse logitud" : "Ebaõnnestumine! Midagi on valesti")
           navigate('/');
     }
     function register(){
-        fetch(`http://localhost:5139/Kasutaja/create/${username.current.value}/${password.current.value}/${firstname.current.value}/${lastname.current.value}`, {"method": "POST"})
-          navigate('/');
+        fetch(`http://localhost:5139/Kasutaja/register/${username.current.value}/${password.current.value}/${firstname.current.value}/${lastname.current.value}`, {"method": "POST"})
+        .then(res => res.json())
+        .then(json => isAuth = json);
+        alert(isAuth ? "Edu! Ole registreeritud" : "Ebaõnnestumine! Midagi on valesti")
+        navigate('/');
     }
     return (
         <div className='mainBody'>

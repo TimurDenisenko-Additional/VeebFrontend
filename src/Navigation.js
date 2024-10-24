@@ -1,25 +1,20 @@
 // Navigation.js
-import React from 'react';
+import { React, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Navigation.css';
+import { AuthContext } from './AuthContext';
 
-function Navigation(isAuthenticated) {
-
-    function logout(){
-        fetch(`http://localhost:5139/Kasutaja/logout`, {"method": "GET"})
-          .then(res => res.text())
-          .then(text => alert(text));
-          isAuthenticated = false;
-    }
+function Navigation() {
+  const { isAuth, logout } = useContext(AuthContext);
 
   return (
     <nav>
         <ul>
             <li><Link to="/">Kodu</Link></li>
-            {isAuthenticated ? (
+            {isAuth ? (
                 <>
                 <li><Link to="/ToodeManage">Tootehaldus</Link></li>
-                <li className='rightNav' onClick={() => logout()}>Logi välja</li>
+                <li className='rightNav' onClick={logout}><Link to="/">Logi välja</Link></li>
                 </>   
             ) : (
                 <li className='rightNav'><Link to="/LogPage">Logi sisse</Link></li>
