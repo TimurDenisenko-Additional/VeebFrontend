@@ -1,6 +1,6 @@
 import { useRef, useContext } from 'react';
 import { json, useNavigate } from 'react-router-dom';
-import './Login.css';
+import './styles/Login.css';
 import { AuthContext } from './AuthContext';
 
 function LogPage(){

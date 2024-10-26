@@ -1,8 +1,8 @@
 // Navigation.js
 import { React, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import './Navigation.css';
-import { AuthContext } from './AuthContext';
+import './styles/Navigation.css';
+import { AuthContext } from '../auth/AuthContext';
 
 function Navigation() {
   const { isAuth, logout } = useContext(AuthContext);

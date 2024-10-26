@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Store from './Store';
-import ToodeManage from './ToodeManage';
-import Navigation from './Navigation';
-import LogPage from './LogPage';
-import { AuthProvider } from './AuthContext';
+import Store from './store/Store';
+import ToodeManage from './store/ToodeManage';
+import Navigation from './main/Navigation';
+import LogPage from './auth/LogPage';
+import { AuthProvider } from './auth/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

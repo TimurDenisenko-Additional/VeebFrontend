@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './Store.css';
+import './styles/Store.css';
 
 function Store(){
     const [tooted, setTooted] = useState([]);
