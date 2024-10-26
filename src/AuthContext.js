@@ -11,7 +11,6 @@ export const AuthProvider = ({ children }) => {
       .then(text => alert(text));
       setAuth(false);
   };
-
   useEffect(() => {
     fetch(`http://localhost:5139/Kasutaja/is-auth`, { method: 'GET' })
       .then(res => res.json())

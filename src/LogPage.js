@@ -9,20 +9,18 @@ function LogPage(){
     const firstname = useRef();
     const lastname = useRef();
     const navigate = useNavigate();
-    const { isAuth } = useContext(AuthContext);
+    const { isAuth, setAuth } = useContext(AuthContext);
 
     function login(){
         fetch(`http://localhost:5139/Kasutaja/login/${username.current.value}/${password.current.value}`, {"method": "GET"})
           .then(res => res.json())
-          .then(json => isAuth = json);
-          alert(isAuth ? "Edu! Ole sisse logitud" : "Ebaõnnestumine! Midagi on valesti")
+          .then(json => setAuth(json));
           navigate('/');
     }
     function register(){
         fetch(`http://localhost:5139/Kasutaja/register/${username.current.value}/${password.current.value}/${firstname.current.value}/${lastname.current.value}`, {"method": "POST"})
         .then(res => res.json())
-        .then(json => isAuth = json);
-        alert(isAuth ? "Edu! Ole registreeritud" : "Ebaõnnestumine! Midagi on valesti")
+        .then(json => setAuth(json));
         navigate('/');
     }
     return (
