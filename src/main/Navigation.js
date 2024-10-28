@@ -5,7 +5,7 @@ import './styles/Navigation.css';
 import { AuthContext } from '../auth/AuthContext';
 
 function Navigation() {
-  const { isAuth, logout } = useContext(AuthContext);
+  const { isAuth, isAdmin, logout } = useContext(AuthContext);
 
   return (
     <nav>
@@ -13,7 +13,13 @@ function Navigation() {
             <li><Link to="/">Kodu</Link></li>
             {isAuth ? (
                 <>
-                <li><Link to="/ToodeManage">Tootehaldus</Link></li>
+                {isAdmin ? (
+                  <>
+                  <li><Link to="/ToodeManage">Tootehaldus</Link></li>
+                  </>
+                ) : (
+                  <></>
+                )}
                 <li className='rightNav' onClick={logout}><Link to="/">Logi välja</Link></li>
                 </>   
             ) : (

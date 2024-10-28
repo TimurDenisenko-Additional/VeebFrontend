@@ -1,9 +1,11 @@
-import { useRef, useContext } from 'react';
-import { json, useNavigate } from 'react-router-dom';
+import { useEffect, useRef, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './styles/Login.css';
 import { AuthContext } from './AuthContext';
 
 function LogPage(){
+    const usernameLogin = useRef();
+    const passwordLogin = useRef();
     const username = useRef();
     const password = useRef();
     const firstname = useRef();
@@ -12,7 +14,7 @@ function LogPage(){
     const { isAuth, setAuth } = useContext(AuthContext);
 
     function login(){
-        fetch(`http://localhost:5139/Kasutaja/login/${username.current.value}/${password.current.value}`, {"method": "GET"})
+        fetch(`http://localhost:5139/Kasutaja/login/${usernameLogin.current.value}/${passwordLogin.current.value}`, {"method": "GET"})
           .then(res => res.json())
           .then(json => setAuth(json));
           navigate('/');
@@ -37,8 +39,8 @@ function LogPage(){
                 </div>
                 <div class="login">
                     <label for="chk" aria-hidden="true">Login</label>
-                    <input name="username" placeholder="Username" ref={username}/>
-                    <input type="password" name="pswd" placeholder="Password" ref={password} />
+                    <input name="username" placeholder="Username" ref={usernameLogin}/>
+                    <input type="password" name="pswd" placeholder="Password" ref={passwordLogin} />
                     <button onClick={() => login()}>Login</button>
                 </div>
             </div>
