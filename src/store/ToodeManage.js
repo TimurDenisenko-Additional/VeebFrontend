@@ -18,8 +18,14 @@ function ToodeManage() {
 
   function kustuta(index) {
     fetch("http://localhost:5139/toode/delete/" + index, {"method": "DELETE"})
-      .then(res => res.json())
-      .then(json => setTooted(json));
+      .then(res => {
+        if (res.ok){
+          setTooted(res.json());
+        }
+        else{
+          alert(res.json());
+        }
+      });
 
   }
   function lisa() {

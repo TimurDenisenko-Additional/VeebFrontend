@@ -15,15 +15,33 @@ function LogPage(){
 
     function login(){
         fetch(`http://localhost:5139/Kasutaja/login/${usernameLogin.current.value}/${passwordLogin.current.value}`, {"method": "GET"})
-          .then(res => res.json())
-          .then(json => setAuth(json));
-          navigate('/');
+          .then(res => {
+            if (res.ok){
+                setAuth(res.json());
+                navigate('/');
+            }
+            else if(res.status == 400){
+              res.text().then(value => alert(value));
+            }
+            else{
+                alert("Kirjuta andmed");
+            }
+          });
     }
     function register(){
         fetch(`http://localhost:5139/Kasutaja/register/${username.current.value}/${password.current.value}/${firstname.current.value}/${lastname.current.value}`, {"method": "POST"})
-        .then(res => res.json())
-        .then(json => setAuth(json));
-        navigate('/');
+        .then(res => {
+          if (res.ok){
+              setAuth(res.json());
+              navigate('/');
+          }
+          else if(res.status == 400){
+            res.text().then(value => alert(value));
+          }
+          else{
+              alert("Kirjuta andmed");
+          }
+        });
     }
     return (
         <div className='mainBody'>

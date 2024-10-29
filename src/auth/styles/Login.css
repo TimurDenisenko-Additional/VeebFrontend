@@ -50,7 +50,7 @@
 	justify-content: center;
 	display: block;
 	color: #fff;
-	background: #573b8a;
+	background: #000000;
 	font-size: 1em;
 	font-weight: bold;
 	margin-top: 30px;
@@ -61,7 +61,7 @@
 	cursor: pointer;
 }
 .mainBody button:hover{
-	background: #6d44b8;
+	background: #000000;
 }
 .login{
 	height: 500px;
@@ -74,7 +74,7 @@
 	background: #e0dede;
 }
 .login label{
-	color: #573b8a;
+	color: #000000;
 	transform: scale(.6);
 }
 
@@ -88,5 +88,5 @@
 	transform: scale(.6);
 }
 .signup label{
-	color: #573b8a;
+	color: #000000;
 }
