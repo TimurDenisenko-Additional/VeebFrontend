@@ -1,4 +1,4 @@
-import { useEffect, useRef, useContext } from 'react';
+import { useRef, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/Login.css';
 import { AuthContext } from './AuthContext';
@@ -11,16 +11,20 @@ function LogPage(){
     const firstname = useRef();
     const lastname = useRef();
     const navigate = useNavigate();
-    const { isAuth, setAuth } = useContext(AuthContext);
+    const {setAuth, setAdmin } = useContext(AuthContext);
 
     function login(){
         fetch(`http://localhost:5139/Kasutaja/login/${usernameLogin.current.value}/${passwordLogin.current.value}`, {"method": "GET"})
           .then(res => {
-            if (res.ok){
-                setAuth(res.json());
+                if (res.ok){
+                    setAuth(res.json());
+                    fetch(`http://localhost:5139/Kasutaja/is-admin`, {"method": "GET"}).then(res => {
+                        setAdmin(res.json());
+                    }
+                )
                 navigate('/');
             }
-            else if(res.status == 400){
+            else if(res.status === 400){
               res.text().then(value => alert(value));
             }
             else{
@@ -35,7 +39,7 @@ function LogPage(){
               setAuth(res.json());
               navigate('/');
           }
-          else if(res.status == 400){
+          else if(res.status === 400){
             res.text().then(value => alert(value));
           }
           else{
