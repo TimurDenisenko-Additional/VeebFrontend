@@ -21,6 +21,7 @@ function Navigation() {
                   <></>
                 )}
                 <li className='rightNav' onClick={logout}><Link to="/">Logi välja</Link></li>
+                <li><Link to="/Cart">Ostukorv</Link></li>
                 </>   
             ) : (
                 <li className='rightNav'><Link to="/LogPage">Logi sisse</Link></li>

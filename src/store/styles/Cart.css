@@ -1,33 +1,30 @@
-
-.store-container {
+.cart-container {
     display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    background-color: #f4f4f4;
+    flex-flow: column wrap;
+    align-items: flex-start;
+    background-color: hsl(210, 36%, 96%);
     margin: 20px;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
 }
 
-.store-title {
-    font-size: 2em;
+.cart-title {
+    font-size: 2.5em;
     margin-bottom: 20px;
     padding-left: 20px;
-    color: #333;
+    color: hsl(210, 29%, 24%);
     width: 100%;
 }
 
-
-
-.product-list {
+.localproduct-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: left;
     gap: 20px;
 }
 
-.product-item {
+.localproduct-item {
     width: 300px;
     background-color: hsl(0, 0%, 100%);
     margin: 20px;
@@ -39,13 +36,13 @@
     overflow: hidden;
 }
 
-.product-item:hover {
+.localproduct-item:hover {
     transform: translateY(-8px);
     background-color: hsl(0, 0%, 98%);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.product-name {
+.localproduct-name {
     font-size: 1.7em;
     font-weight: bold;
     color: hsl(210, 29%, 24%);
@@ -53,7 +50,11 @@
     transition: color 0.3s ease;
 }
 
-.product-price {
+.localproduct-item:hover .localproduct-name {
+    color: hsl(0, 70%, 60%);
+}
+
+.localproduct-price {
     font-size: 1.3em;
     color: hsl(120, 40%, 40%);
     margin-bottom: 20px;
@@ -61,17 +62,44 @@
     transition: color 0.3s ease;
 }
 
-.buy-button {
-    background-color: #28a745;
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+.localproduct-item:hover .localproduct-price {
+    color: hsl(0, 80%, 50%);
 }
 
-.buy-button:hover {
-    background-color: #218838;
-    transform: scale(1.05);
+.payment-container {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.payment-container h2 {
+    margin-bottom: 20px;
+}
+
+.payment-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.payment-button:hover {
+    background-color: #0056b3;
+}
+
+.payment-link {
+    margin-top: 10px;
+}
+
+.payment-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.payment-link a:hover {
+    text-decoration: underline;
 }
