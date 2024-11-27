@@ -142,12 +142,12 @@ function ToodeManage() {
             </tr>
             {tooted.map((toode, index) => (
               <tr key={index}>
-                <td>{index}</td>
+                <td>{toode.id}</td>
                 <td>{toode.name}</td>
                 {toode.isActive ? <td className='Active'>🟢 Aktiivne</td> : <td className='nActive'>🔴 Mitte aktiivne</td>}
                 <td>{toode.price}</td>
                 <td>
-                  <button onClick={() => kustuta(index)}>Kustuta</button>
+                  <button onClick={() => kustuta(toode.id)}>Kustuta</button>
                 </td>
               </tr>
             ))}
